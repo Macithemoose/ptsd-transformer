@@ -6,23 +6,19 @@ import models
 import numpy as np
 
 X_train_np = np.array(np.load("data/tensors/data_train.npy", allow_pickle=True), dtype = np.float32)
-#X_val_np = np.array(np.load("data/tensors/data_val.npy", allow_pickle=True), dtype = np.float32)
 X_test_np = np.array(np.load("data/tensors/data_test.npy", allow_pickle=True), dtype = np.float32)
 
 X_train = torch.from_numpy(X_train_np).float()
-#X_val = torch.from_numpy(X_val_np).float()
 X_test = torch.from_numpy(X_test_np).float()
 
 Y_train_np = np.array(np.load("labels/Y_train.npy", allow_pickle=True), dtype = np.float32)
-#Y_val_np = np.array(np.load("labels/Y_val.npy", allow_pickle=True), dtype = np.float32)
 Y_test_np = np.array(np.load("labels/Y_test.npy", allow_pickle=True), dtype = np.float32)
 
 Y_train = torch.from_numpy(Y_train_np).float()
-#Y_val = torch.from_numpy(Y_val_np).float()
 Y_test = torch.from_numpy(Y_test_np).float()
 
 train_dataset = TensorDataset(X_train, Y_train)
-train_loader = DataLoader(train_dataset, batch_size=4, shuffle=True)
+train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
 
 model = models.EmpathyTransformer(d_model=1000, n_heads=4, num_transformer_layers=1)
 
